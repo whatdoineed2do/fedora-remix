@@ -32,7 +32,6 @@ gstreamer1-plugins-bad-freeworld
 gstreamer1-plugins-good
 gstreamer1-plugins-ugly
 gstreamer1-plugins-ugly-free
-libdvdcss
 
 # Tools
 exfat-utils

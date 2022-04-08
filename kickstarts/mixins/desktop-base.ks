@@ -7,31 +7,29 @@
 # Unwanted stuff
 -abrt*
 -fedora-release-notes
--fpaste
+-xreader
 -rsyslog
 -sendmail
 
 # Multimedia
-mozilla-openh264
-vdpauinfo
-libva-vdpau-driver
+libva
 libva-utils
+intel-media-driver
 
 # Fonts
 google-noto-sans-fonts
 google-noto-sans-mono-fonts
 google-noto-serif-fonts
 liberation-s*-fonts
-wine-fonts
 
 # Tools
 @networkmanager-submodules
-htop
 vim-enhanced
 unar
-tmate
 exfat-utils
 ntpsec
+inxi
+jq
 
 %end
 
@@ -41,9 +39,6 @@ ntpsec
 echo ""
 echo "POST desktop-base ************************************"
 echo ""
-
-# Link Wine fonts to system folder
-ln -s /usr/share/wine/fonts /usr/share/fonts/wine
 
 # Antialiasing by default.
 # Set Noto fonts as preferred family.

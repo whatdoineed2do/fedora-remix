@@ -1,7 +1,8 @@
-FLAVOR=remix-gnome
+FLAVOR=remix-cinnamon
 RELEASEVER=35
 DEVICE=/dev/null # Override from command line for safety
-USE_PODMAN=yes
+USE_PODMAN=no
+OVERLAY=--overlay-size-mb 2048
 
 ODIR=results
 BUILDER_IMG=fedora-spin-builder
@@ -37,13 +38,15 @@ $(ODIR):
 	mkdir -p $(ODIR)
 
 clean:
-	rm -fr $(ODIR)/*
+	rm -fr ./$(ODIR)
+	killall anaconda unshare
+	rm /var/run/anaconda.pid
 
 disk-efi: $(ODIR)/$(FLAVOR)/images/boot-efi.iso
-	livecd-iso-to-disk --format --reset-mbr --efi $(ODIR)/$(FLAVOR)/images/boot-efi.iso $(DEVICE)
+	livecd-iso-to-disk --format --reset-mbr --efi $(OVERLAY) $(ODIR)/$(FLAVOR)/images/boot-efi.iso $(DEVICE)
 
 disk-bios: $(ODIR)/$(FLAVOR)/images/boot.iso
-	livecd-iso-to-disk --format --reset-mbr --msdos $(ODIR)/$(FLAVOR)/images/boot.iso $(DEVICE)
+	livecd-iso-to-disk --format --reset-mbr --msdos $(OVERLAY) $(ODIR)/$(FLAVOR)/images/boot.iso $(DEVICE)
 
 .PHONY: default clean test podman-builder podman-clean podman-kill-builder images disk-efi disk-bios
 

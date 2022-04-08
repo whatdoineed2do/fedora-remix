@@ -7,16 +7,16 @@
 # Does includes "default" language configuration (kickstarts including
 # this template can override these settings)
 
-lang en_US.UTF-8
-keyboard us
-timezone US/Eastern
+lang en_GB.UTF-8
+keyboard gb
+timezone Europe/London
 selinux --enforcing
 firewall --enabled --service=mdns
 xconfig --startxonboot
 zerombr
 clearpart --all
 part / --size 8500 --fstype ext4
-services --enabled=NetworkManager,ModemManager --disabled=sshd,NetworkManager-wait-online
+services --enabled=NetworkManager --disabled=sshd,NetworkManager-wait-online
 network --bootproto=dhcp --device=link --activate
 rootpw --lock --iscrypted locked
 shutdown
